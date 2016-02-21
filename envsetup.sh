@@ -157,6 +157,10 @@ function setpaths()
     targetlegacygccversion=$(get_build_var TARGET_LEGACY_GCC_VERSION)
     export TARGET_GCC_VERSION=$targetgccversion
 
+    echo "Target GCC version: $targetgccversion"
+    echo "Kernel GCC version: $targetlegacygccversion"
+    echo
+
     # The gcc toolchain does not exists for windows/cygwin. In this case, do not reference it.
     export ANDROID_TOOLCHAIN=
     export ANDROID_TOOLCHAIN_2ND_ARCH=
@@ -200,10 +204,6 @@ function setpaths()
             # No need to set ARM_EABI_TOOLCHAIN for other ARCHs
             ;;
     esac
-
-    echo "ANDROID_TOOLCHAIN: $ANDROID_TOOLCHAIN"
-    echo "ANDROID_KERNEL_TOOLCHAIN_PATH: $ANDROID_KERNEL_TOOLCHAIN_PATH"
-    echo
     
     export ANDROID_DEV_SCRIPTS=$T/development/scripts:$T/prebuilts/devtools/tools:$T/external/selinux/prebuilts/bin
     export ANDROID_BUILD_PATHS=$(get_build_var ANDROID_BUILD_PATHS):$ANDROID_TOOLCHAIN:$ANDROID_TOOLCHAIN_2ND_ARCH:$ANDROID_KERNEL_TOOLCHAIN_PATH$ANDROID_DEV_SCRIPTS:
